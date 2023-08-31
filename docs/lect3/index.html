@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>第3回 複雑な制御構文と再帰関数 | Ruby学習サイト</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="第3回 複雑な制御構文と再帰関数" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ruby学習サイト" />
+<meta property="og:description" content="Ruby学習サイト" />
+<link rel="canonical" href="https://rubylect.k1h.dev/lect3/" />
+<meta property="og:url" content="https://rubylect.k1h.dev/lect3/" />
+<meta property="og:site_name" content="Ruby学習サイト" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="第3回 複雑な制御構文と再帰関数" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Ruby学習サイト","headline":"第3回 複雑な制御構文と再帰関数","url":"https://rubylect.k1h.dev/lect3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+    type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css?v=c4220ac251a30d5274e95f3e08dc1f8545df8371">
+  <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+  <header role="banner">
+    <nav class="navbar navbar-light py-3" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <span
+          class="navbar-brand mb-0 h1">第3回 複雑な制御構文と再帰関数</span>
+      </div>
+    </nav>
+    <!-- <h2 class="project-tagline">
+      Ruby学習サイト</h2>-->
+  </header>
+  <main id="content" class="main-content" role="main">
+    <h1 id="第3回-複雑な制御構文と再帰関数">第3回 複雑な制御構文と再帰関数</h1>
+
+<h1 id="目次">目次</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#第3回-複雑な制御構文と再帰関数" id="markdown-toc-第3回-複雑な制御構文と再帰関数">第3回 複雑な制御構文と再帰関数</a></li>
+  <li><a href="#目次" id="markdown-toc-目次">目次</a></li>
+  <li><a href="#先週の復習" id="markdown-toc-先週の復習">先週の復習</a>    <ul>
+      <li><a href="#配列" id="markdown-toc-配列">配列</a></li>
+      <li><a href="#制御構文" id="markdown-toc-制御構文">制御構文</a>        <ul>
+          <li><a href="#条件分岐" id="markdown-toc-条件分岐">条件分岐</a>            <ul>
+              <li><a href="#関係演算子" id="markdown-toc-関係演算子">関係演算子</a></li>
+              <li><a href="#論理演算子" id="markdown-toc-論理演算子">論理演算子</a></li>
+            </ul>
+          </li>
+          <li><a href="#繰り返し" id="markdown-toc-繰り返し">繰り返し</a></li>
+        </ul>
+      </li>
+      <li><a href="#復習問題3rev" id="markdown-toc-復習問題3rev">復習問題(3rev)</a></li>
+    </ul>
+  </li>
+  <li><a href="#今回の内容" id="markdown-toc-今回の内容">今回の内容</a>    <ul>
+      <li><a href="#複雑な制御構文" id="markdown-toc-複雑な制御構文">複雑な制御構文</a>        <ul>
+          <li><a href="#条件分岐-1" id="markdown-toc-条件分岐-1">条件分岐</a>            <ul>
+              <li><a href="#おまけ-unless" id="markdown-toc-おまけ-unless">おまけ unless</a></li>
+              <li><a href="#case文" id="markdown-toc-case文">case文</a></li>
+            </ul>
+          </li>
+          <li><a href="#繰り返し-1" id="markdown-toc-繰り返し-1">繰り返し</a>            <ul>
+              <li><a href="#while文" id="markdown-toc-while文">while文</a></li>
+              <li><a href="#each文" id="markdown-toc-each文">each文</a></li>
+              <li><a href="#break-nextとは" id="markdown-toc-break-nextとは">break, nextとは？</a></li>
+              <li><a href="#until" id="markdown-toc-until">until</a></li>
+            </ul>
+          </li>
+          <li><a href="#修飾子" id="markdown-toc-修飾子">修飾子</a></li>
+        </ul>
+      </li>
+      <li><a href="#再帰関数" id="markdown-toc-再帰関数">再帰関数</a>        <ul>
+          <li><a href="#再帰関数の問題点と使い所" id="markdown-toc-再帰関数の問題点と使い所">再帰関数の問題点と使い所</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#演習" id="markdown-toc-演習">演習</a>    <ul>
+      <li><a href="#演習問題3a" id="markdown-toc-演習問題3a">演習問題3a</a></li>
+      <li><a href="#演習問題3b" id="markdown-toc-演習問題3b">演習問題3b</a></li>
+      <li><a href="#演習問題3c" id="markdown-toc-演習問題3c">演習問題3c</a></li>
+      <li><a href="#以下上級者向け問題" id="markdown-toc-以下上級者向け問題">以下上級者向け問題</a></li>
+      <li><a href="#演習問題3d" id="markdown-toc-演習問題3d">演習問題3d</a>        <ul>
+          <li><a href="#動的計画法を用いた探索と演習少し難しめ" id="markdown-toc-動的計画法を用いた探索と演習少し難しめ">動的計画法を用いた探索と演習(少し難しめ)</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="先週の復習">先週の復習</h1>
+
+<h2 id="配列">配列</h2>
+
+<p>配列は複数の変数が連なったもので、似たようなデータを効率的に管理したりすることが可能。</p>
+
+<p>例えば、温度センサーから取得した一週間分のデータを管理したい場合に変数で全部記録すると</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_sun</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">data_mon</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="n">data_tue</span> <span class="o">=</span> <span class="mf">12.3</span>
+<span class="n">data_wed</span> <span class="o">=</span> <span class="mf">42.0</span>
+<span class="n">data_thu</span> <span class="o">=</span> <span class="mf">32.0</span>
+<span class="n">data_fri</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">data_sat</span> <span class="o">=</span> <span class="mf">21.0</span>
+</code></pre></div></div>
+
+<p>配列に変換すると、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mf">42.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>配列では左から順番に番地が決められている。
+Rubyでは<code class="language-plaintext highlighter-rouge">変数名[]</code>で値を囲むことで配列を定義でき、<code class="language-plaintext highlighter-rouge">変数名[n]</code>のようにすると<code class="language-plaintext highlighter-rouge">[n]</code>番目の要素にアクセス可能。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mf">13.0</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>番地</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>要素</td>
+      <td>13.0</td>
+      <td>15.0</td>
+      <td>12.3</td>
+      <td>42.0</td>
+      <td>32.0</td>
+      <td>13.0</td>
+      <td>21.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>配列の番地のカウントは<code class="language-plaintext highlighter-rouge">0</code>から始るのに注意</strong></p>
+
+<p>配列では、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"千歳烏山"</span><span class="p">,</span> <span class="s2">"仙川"</span><span class="p">,</span> <span class="s2">"つつじヶ丘"</span><span class="p">,</span> <span class="s2">"調布"</span><span class="p">]</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+<span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>のように文字列を配列に入れたり、配列の配列の入れ子をすることも可能。</p>
+
+<p>ただし、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></div>
+<p>のような配列で<code class="language-plaintext highlighter-rouge">data[3]</code>で存在しない値にアクセスしようとすると
+<code class="language-plaintext highlighter-rouge">data[3] =&gt; nil</code>のようになってしまい、<code class="language-plaintext highlighter-rouge">nil</code>が処理に含まれることで何かしらのエラーが発生する場合もあるので注意が必要。</p>
+
+<h2 id="制御構文">制御構文</h2>
+
+<p>制御構文はプログラミングの基礎であり、分岐、繰り返しといった手続きの実行順序を制御することが可能。</p>
+
+<h3 id="条件分岐">条件分岐</h3>
+
+<p>Rubyではif文と呼ばれる構文で条件に応じた分岐が可能。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isPlus</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="kp">true</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>この関数を実際に動かしてみると、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isPlus</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+<span class="n">isPlus</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</code></pre></div></div>
+
+<p>のように、正の数ならば<code class="language-plaintext highlighter-rouge">true</code>でそれ以外ならば<code class="language-plaintext highlighter-rouge">false</code>と表示される。</p>
+
+<p>また、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="err">条件式</span> <span class="k">then</span>
+  <span class="err">処理</span>
+<span class="k">elsif</span> <span class="err">条件式</span> <span class="k">then</span>
+  <span class="err">処理</span>
+<span class="k">else</span>
+  <span class="err">処理</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように<code class="language-plaintext highlighter-rouge">else</code>や<code class="language-plaintext highlighter-rouge">elsif</code>を組み合わせ可能。</p>
+
+<h4 id="関係演算子">関係演算子</h4>
+
+<p>条件式は次の関係演算子によって作られる。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>演算子</th>
+      <th>意味</th>
+      <th>用例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>==</td>
+      <td>等しい</td>
+      <td>a = b</td>
+    </tr>
+    <tr>
+      <td>!=</td>
+      <td>等しくない</td>
+      <td>a != b</td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>より大きい</td>
+      <td>a &gt; b</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>より小さい</td>
+      <td>a &lt; b</td>
+    </tr>
+    <tr>
+      <td>&gt;=</td>
+      <td>以上</td>
+      <td>a &gt;= b</td>
+    </tr>
+    <tr>
+      <td>&lt;=</td>
+      <td>以下</td>
+      <td>a &lt;= b</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="論理演算子">論理演算子</h4>
+
+<p>論理演算子を使って条件同士を繋げることが可能。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>演算子</th>
+      <th>意味</th>
+      <th>用例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&amp;&amp;</td>
+      <td>かつ</td>
+      <td>(a &gt; 0) &amp;&amp; (b &gt; 0)</td>
+    </tr>
+    <tr>
+      <td>||</td>
+      <td>または</td>
+      <td>(a &gt; 0) || (b &gt; 0)</td>
+    </tr>
+    <tr>
+      <td>!</td>
+      <td>否定</td>
+      <td>!(a &gt; 0)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="繰り返し">繰り返し</h3>
+
+<p>繰り返しは先程の配列を処理する際にとても便利。</p>
+
+<p>シンプルな繰り返しには<code class="language-plaintext highlighter-rouge">for</code>文がある。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span> <span class="k">do</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>このコードを実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+3
+4
+5
+</code></pre></div></div>
+<p>と1から5まで打ち出されます。</p>
+
+<p>さきほどの配列における1週間の平均気温を求める場合には、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mf">42.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">]</span>
+<span class="n">temp_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">temp</span> <span class="k">in</span> <span class="n">temp_week</span> <span class="k">do</span>
+  <span class="n">temp_sum</span> <span class="o">+=</span> <span class="n">temp</span>
+<span class="k">end</span>
+<span class="n">temp_avg</span> <span class="o">=</span> <span class="n">temp_sum</span> <span class="o">/</span> <span class="n">temp_week</span><span class="p">.</span><span class="nf">size</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">temp_avg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mf">21.185714285714287</span>
+</code></pre></div></div>
+
+<p>のようにすると、1つづつ要素が取り出されてtempに代入されるので合計を簡単に求めることが可能。</p>
+
+<h2 id="復習問題3rev">復習問題(3rev)</h2>
+
+<p>せっかくなので少しだけ複雑な配列で練習してみる。</p>
+
+<p>n人のクラスでそれぞれ100点満点の線形代数と微分積分テストを実施しました。その結果が配列として与えられた時、相関係数を求める関数<code class="language-plaintext highlighter-rouge">cor(scores)</code>を作成する。</p>
+
+<p>なお、配列は</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[線形代数の得点, 微分積分の得点],[線形代数の得点, 微分積分の得点],...]
+</code></pre></div></div>
+<p>のようにデータが格納されている。</p>
+
+<p>なお相関係数\(r\)は各データの値を\(x_i\)・\(y_i\)、データの総数を\(n\)、平均を\(\overline{x}\)・\(\overline{y}\)としたとき次式で求められる。</p>
+
+\[r = \frac{\sum_{i=1}^n (x_i-\overline{x})(y_i-\overline{y})}{
+  \sqrt{\sum_{i=1}^n (x_i-\overline{x})^2}\,\sqrt{\sum_{i=1}^n (y_i-\overline{y})^2}
+}\]
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cor([[50,40], [60,70], [70,90], [80, 60], [90, 100]]).round(2) =&gt; 0.73
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+すべての値は0以上100以下の整数で与えられる
+5&lt;=n&lt;=20である。
+nは与えられる配列の要素数と一致しているため、
+配列をscoresとしたときn=scores.sizeとして取得できる
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <p>数式に従って実装するだけだが、</p>
+  <ul>
+    <li>なるべく同じ計算を減らす</li>
+    <li><strong>整数同士の割り算の誤差に注意する</strong></li>
+  </ul>
+
+  <p>特に前回は私自身も、</p>
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sum_x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">~~~</span>
+<span class="n">avg_x</span> <span class="o">=</span> <span class="n">sum_x</span> <span class="o">/</span> <span class="n">n</span>
+</code></pre></div>  </div>
+  <p>としてしまったため、整数同士の割り算となり誤差が生じてしまった。</p>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cor</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+  <span class="n">sum_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">sum_y</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="nf">size</span>
+  <span class="k">for</span> <span class="n">score</span> <span class="k">in</span> <span class="n">scores</span>
+    <span class="n">sum_x</span> <span class="o">+=</span> <span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sum_y</span> <span class="o">+=</span> <span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">end</span>
+  <span class="n">avg_x</span> <span class="o">=</span> <span class="n">sum_x</span> <span class="o">/</span> <span class="n">n</span>
+  <span class="n">avg_y</span> <span class="o">=</span> <span class="n">sum_y</span> <span class="o">/</span> <span class="n">n</span>
+  <span class="n">temp_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">temp_y</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">temp_xy</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">score</span> <span class="k">in</span> <span class="n">scores</span>
+    <span class="n">temp_xy</span> <span class="o">+=</span> <span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg_x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg_y</span><span class="p">)</span>
+    <span class="n">temp_x</span> <span class="o">+=</span> <span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg_x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">temp_y</span> <span class="o">+=</span> <span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg_y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">temp_xy</span> <span class="o">/</span> <span class="p">(</span><span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">temp_x</span><span class="p">)</span> <span class="o">*</span> <span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">temp_y</span><span class="p">))</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<p>今回の大きな2つのテーマは</p>
+
+<ul>
+  <li>複雑な制御構文</li>
+  <li>再帰関数</li>
+</ul>
+
+<p>です。</p>
+
+<p>今回の再帰関数は少しむずかしい内容にはなっていますが、効率の良いプログラミングをする上で重要なのでついてきてください。</p>
+
+<h2 id="複雑な制御構文">複雑な制御構文</h2>
+
+<p>Rubyには前回紹介したif-elseやfor意外にも多くの便利な命令が用意されています。</p>
+
+<p>この講習ではその中でも実用的なものを取り扱って、実際に演習を通して使ってみます。</p>
+
+<h3 id="条件分岐-1">条件分岐</h3>
+
+<h4 id="おまけ-unless">おまけ unless</h4>
+
+<p><code class="language-plaintext highlighter-rouge">if</code>文の逆である<code class="language-plaintext highlighter-rouge">unless</code>という構文もあります。</p>
+
+<p><code class="language-plaintext highlighter-rouge">unless 条件式</code>は<code class="language-plaintext highlighter-rouge">if !(条件式)</code>と同じです。英語なので直感的に分かりやすくなるかもしれません。</p>
+
+<h4 id="case文">case文</h4>
+
+<p>条件によって複数の処理に分けるときには<code class="language-plaintext highlighter-rouge">case</code>文が便利です。</p>
+
+<p>例えば、変数<code class="language-plaintext highlighter-rouge">age</code>によって分岐する場合は</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getClass</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+  <span class="k">case</span> <span class="n">age</span>
+  <span class="k">when</span> <span class="mi">0</span><span class="o">..</span><span class="mi">2</span>
+    <span class="s2">"幼児"</span>
+  <span class="k">when</span> <span class="mi">3</span><span class="o">..</span><span class="mi">6</span>
+    <span class="s2">"小児"</span>
+  <span class="k">when</span> <span class="mi">7</span><span class="o">..</span><span class="mi">12</span>
+    <span class="s2">"子供"</span>
+  <span class="k">when</span> <span class="mi">13</span><span class="o">..</span><span class="mi">18</span>
+    <span class="s2">"若者"</span>
+  <span class="k">else</span>
+    <span class="s2">"大人"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように書くことができ、<code class="language-plaintext highlighter-rouge">case A</code>としたとき<code class="language-plaintext highlighter-rouge">A</code>とwhenで指定された部分が一致する処理を行いってくれます。<code class="language-plaintext highlighter-rouge">else</code>はどの条件にも当てはまらないときに呼ばれます。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getClass</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+  <span class="k">if</span> <span class="mi">0</span><span class="o">..</span><span class="mi">2</span>
+    <span class="s2">"幼児"</span>
+  <span class="k">when</span> <span class="mi">3</span><span class="o">..</span><span class="mi">6</span>
+    <span class="s2">"小児"</span>
+  <span class="k">when</span> <span class="mi">7</span><span class="o">..</span><span class="mi">12</span>
+    <span class="s2">"子供"</span>
+  <span class="k">when</span> <span class="mi">13</span><span class="o">..</span><span class="mi">18</span>
+    <span class="s2">"若者"</span>
+  <span class="k">else</span>
+    <span class="s2">"大人"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>これは範囲イテレーター（<code class="language-plaintext highlighter-rouge">1..3</code>は<code class="language-plaintext highlighter-rouge">[1, 2, 3]</code>）を使ってるので少し特殊ですが、<code class="language-plaintext highlighter-rouge">elsif</code>に置き換えることができます。</p>
+
+<h3 id="繰り返し-1">繰り返し</h3>
+
+<h4 id="while文">while文</h4>
+
+<p>while文は条件を満たす間は処理を行う処理です。
+例えば、簡単な例として</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="n">n</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のような処理をすると、<code class="language-plaintext highlighter-rouge">n &gt; 0</code>を満たす間は<code class="language-plaintext highlighter-rouge">n = n - 1</code>をするので、nから順にカウントダウンされていきます。</p>
+
+<h4 id="each文">each文</h4>
+
+<p>for文と似たような文として<code class="language-plaintext highlighter-rouge">each</code>文と呼ばれるものがあります。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">sumA</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">sumB</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="k">in</span> <span class="n">data</span> <span class="k">do</span>
+  <span class="n">sumA</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="k">end</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+  <span class="n">sumB</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>このようにどちらも同じ処理をしますが、<code class="language-plaintext highlighter-rouge">each</code>文を使うとよりシンプルかもしれません。</p>
+
+<h4 id="break-nextとは">break, nextとは？</h4>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="p">(</span><span class="s2">"aa"</span><span class="o">..</span><span class="s2">"az"</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span>
+  <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">then</span>
+    <span class="k">next</span>
+  <span class="k">end</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="until">until</h4>
+
+<p>while文の逆で、条件を満たしていないああいだは繰り返すと行った<code class="language-plaintext highlighter-rouge">until</code>文もあります。</p>
+
+<p>さっきのコードを全く同じに書き直すと、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="n">n</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="修飾子">修飾子</h3>
+
+<p>例えばxが負ならばxに-1を掛けるといったような処理を普通にif文で書くと、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">then</span>
+  <span class="n">x</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>といったような感じになります。しかし、これだけの処理に3行も使うのはちょっとナンセンスですよね。</p>
+
+<p>そこで、if修飾子を使うことで</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</code></pre></div></div>
+<p>のように1行で書くことができます。</p>
+
+<p>これは、<code class="language-plaintext highlighter-rouge">処理 if 条件式</code>のようにifの右側に条件式を書くと、その条件式を満たす場合に左側の処理を実行するということを1行で書けます。</p>
+
+<p>同様にして、<code class="language-plaintext highlighter-rouge">while</code>や<code class="language-plaintext highlighter-rouge">until</code>なども対応しておりこれらは修飾子と呼ばれます。</p>
+
+<p><strong>Rubyには同じような書き方でも多くの書き方があります。</strong>
+<strong>一番は読みやすいコードが大切なのでそこらへんは、次回のソフトウェア設計で少しお話します。</strong></p>
+
+<h2 id="再帰関数">再帰関数</h2>
+
+<p>突然ですが次のコードはどのように動作するでしょうか?</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>これは<code class="language-plaintext highlighter-rouge">n</code>の階乗を返す関数です。例えば、<code class="language-plaintext highlighter-rouge">n=3</code>を入れた時の動作を見てましょう。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fac(3) =&gt; 3 * fac(2)
+fac(2) =&gt; 2 * fac(1)
+fac(1) =&gt; 1
+</code></pre></div></div>
+<p>順番に代入してみると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fac(3) =&gt; 3 * 2 * 1 = 6
+</code></pre></div></div>
+<p>となります。</p>
+
+<p>もちろんこれは、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="n">n</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+    <span class="n">ans</span> <span class="o">*=</span> <span class="n">i</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">ans</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>のように繰り返しを用いて書くこともできます。</p>
+
+<p>その他に例えば次のような数列を求める関数を作ってみます。</p>
+
+\[\begin{align*}
+a_n &amp;= a_{n-1} + a{n-2}\\
+a_0 &amp;= a_1 = 1
+\end{align*}\]
+
+<p>これをそのまま再帰関数を使って実装してあげると、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように簡単に式をそのままの実装することが可能です。</p>
+
+<p>ただし、この関数には無駄があります。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+     <span class="o">=&gt;</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+     <span class="o">=&gt;</span> <span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span><span class="o">+</span><span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+     <span class="o">=&gt;</span> <span class="p">(((</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span><span class="o">+</span><span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+     <span class="o">=&gt;</span> <span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>
+     <span class="o">=&gt;</span> <span class="mi">8</span>
+</code></pre></div></div>
+
+<p>あれ、同じような値を何回か計算してますね。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f_memo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">!=</span> <span class="kp">nil</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>こうすることで、結果をメモすることができるので効率よく計算することができます。</p>
+
+<p>実際に実験してみましょう。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time f(30) =&gt; 224ms
+f_new(30) =&gt; 103ms
+</code></pre></div></div>
+
+<p>のように明らかに実行時間が変わってます。</p>
+
+<p>ちなみに時間計算量と呼ばれる、コンピュータが特定の手順に従って与えられた問題を解く際に必要とする手順の回数を元にすると、
+もともとの場合は\(O(N^2)\)ですが、メモ化するとそれぞれ1回ずづ計算されるだけなので\(O(1) \times N = O(N)\)にまで抑えられます。</p>
+
+<p>このように結果をメモしながら再帰関数を呼び出す手法を、メモ化再帰や動的計画法(DP)といいます。</p>
+
+<p>また、もしメモ化しないで行うと<code class="language-plaintext highlighter-rouge">n=50</code>とかだと全然終わらないと思います。</p>
+
+<h3 id="再帰関数の問題点と使い所">再帰関数の問題点と使い所</h3>
+
+<p>再帰関数はプログラミングにおいてはとても重要ですが、なんでも再帰関数にすれば良いというわけでありません。</p>
+
+<p>試しにnに大きい数を代入してみます。</p>
+
+<p><code class="language-plaintext highlighter-rouge">f(1000000)</code>を実行してみると
+<code class="language-plaintext highlighter-rouge">stack level too deep</code>というエラーが出力され正常に計算することができません。</p>
+
+<p><code class="language-plaintext highlighter-rouge">Stack</code>は関数の戻るところを保存しておく領域です。例えば、再帰的に計算していき最後に戻っていきますが、その時の戻る関数を示します。</p>
+
+<p>そのため、再帰関数を使うときは関数の呼び出しが深くなりすぎないように注意する必要があります。そなる場合は、そもそものアルゴリズムの効率が悪い場合が大半かも。</p>
+
+<p>また、先程のフィボナッチ数列の例ではそもそも繰り返しを使って実装しても\(O(N)\)の計算量で行えるため、わざわざ再帰関数を使う必要はありません。</p>
+
+<p>ポイントとして、<strong>再帰関数を使うべき理由</strong>があるならば使ったほうが良いですが、無意味に再帰関数を使うのはあまりおすすめできません。</p>
+
+<p>では、一体どのような場合に再帰関数を使えば良いのでしょうか。一概には言い切れませんが、<strong>探索</strong>をする場合には有用だったりします。</p>
+
+<p>特に動的計画法を使う際には有用ですが、ここでは少しむずかしいので省略します。</p>
+
+<p><strong>再帰関数は漸化式と相性が良いです</strong></p>
+
+<p>DPを使うことこのように実装できます。</p>
+
+<!-- 500円のコイン、100円のコイン、50円のコインあります。その中から何枚か選んで合計金額がちょうどX円になる方法は何通りあるでしょうか?
+
+単純にこの問題を繰り返しで解こうとすると、
+```ruby
+ans = 0
+x = 1200
+A = 4
+B = 2
+C = 2
+for a in 0..A
+  for b in 0..B
+    for c in 0..C
+      if a * 500 + b * 100 + c * 50 == x
+        ans += 1
+        puts "#{a} #{b} #{c}"
+      end
+    end
+  end
+end
+puts ans
+```
+
+これを実行してみると、
+
+```
+2 1 2
+2 2 0
+2
+```
+
+のように正しく求められました。
+
+ただ、この方法では合計で`(A+1)(B+1)(C+1)`通りすべてを探索しており、さらにコインの種類が増えると`for`が増えて余計にごちゃごちゃします。
+
+これを動的計画法を使って解いてみます。
+-->
+
+<h1 id="演習">演習</h1>
+<h2 id="演習問題3a">演習問題3a</h2>
+
+<p>1, 2, 5セントのコインがそれぞれn枚あります。その中から何枚か選んで合計金額がちょうどxセントになる方法が何通り有るか求める関数<code class="language-plaintext highlighter-rouge">getWay(n,x)</code>を作成する。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+5 &lt;= A,B,C &lt;= 30
+50 &lt;= X &lt;= 300
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getWay(12, 76) =&gt; 23
+</code></pre></div></div>
+
+<h2 id="演習問題3b">演習問題3b</h2>
+
+<p>NxNの正方行列matが与えられた時、その転置行列を求める関数<code class="language-plaintext highlighter-rouge">trans(mat)</code>を作成せよ。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+2 &lt;= N &lt;= 10
+要素xは10以下の整数として与えられる
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trans([[1,2,3],[4,5,6],[7,8,9]]) =&gt; [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+</code></pre></div></div>
+
+<h2 id="演習問題3c">演習問題3c</h2>
+
+<p>nとrが与えられた時、n個の要素からr個を選ぶ時何通りあるか求める関数<code class="language-plaintext highlighter-rouge">comb(n,r)</code>を作成せよ。</p>
+
+<p>ヒント 数学な性質を利用すると簡単に実装できます。</p>
+
+\[nC_r = 
+\left\{
+\begin{array}{ll}
+1 &amp; r=0 , r=n \\
+_{n-1}C_r + _{n-1}C_{r-1} &amp; othersize
+\end{array}
+\right.\]
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+0 &lt;= n, r&lt;=30
+ただし、 r &lt;= n
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>comb(19, 17) =&gt; 171
+</code></pre></div></div>
+
+<h2 id="以下上級者向け問題">以下上級者向け問題</h2>
+
+<h2 id="演習問題3d">演習問題3d</h2>
+<h3 id="動的計画法を用いた探索と演習少し難しめ">動的計画法を用いた探索と演習(少し難しめ)</h3>
+
+<p>N個の足場があります。 足場には 1,2,…,N と番号が振られています。
+足場の高さが配列として与えられます。
+足場 i にいるとき、足場 i+1 または i+2 へジャンプする。 このとき、ジャンプ先の足場を j とすると、コスト ∣h_i−h_j∣ を支払う。
+カエルが足場Nに辿り着くまでに支払うコストの総和の最小値を求める関数、getMinCost(h)を作成する。</p>
+
+<p>AtCorder改題</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+高さは1以上100以下の整数
+Nはsizeで取得
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getMinCost([10, 30, 40, 20]) =&gt; 30
+</code></pre></div></div>
+
+    <footer class="site-footer">
+      
+      <span class="site-footer-owner"><a href="https://github.com/csenet/learn-ruby">learn-ruby</a>
+        is maintained by <a href="https://github.com/csenet">csenet</a>.</span>
+      
+      <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub
+          Pages</a>.</span>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
