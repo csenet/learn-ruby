@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>第2回 配列と制御構文 | Ruby学習サイト</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="第2回 配列と制御構文" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ruby学習サイト" />
+<meta property="og:description" content="Ruby学習サイト" />
+<link rel="canonical" href="https://rubylect.k1h.dev/lect2/" />
+<meta property="og:url" content="https://rubylect.k1h.dev/lect2/" />
+<meta property="og:site_name" content="Ruby学習サイト" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="第2回 配列と制御構文" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Ruby学習サイト","headline":"第2回 配列と制御構文","url":"https://rubylect.k1h.dev/lect2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+    type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css?v=e16c9f31818af6bf55caf043b5fb7560b306bc92">
+  <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+  <header role="banner">
+    <nav class="navbar navbar-light py-3" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <span
+          class="navbar-brand mb-0 h1">第2回 配列と制御構文</span>
+      </div>
+    </nav>
+    <!-- <h2 class="project-tagline">
+      Ruby学習サイト</h2>-->
+  </header>
+  <main id="content" class="main-content" role="main">
+    <h2 id="第2回-配列と制御構文">第2回 配列と制御構文</h2>
+
+<h1 id="目次">目次</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#第2回-配列と制御構文" id="markdown-toc-第2回-配列と制御構文">第2回 配列と制御構文</a></li>
+  <li><a href="#目次" id="markdown-toc-目次">目次</a></li>
+  <li><a href="#前回の復習" id="markdown-toc-前回の復習">前回の復習</a>    <ul>
+      <li><a href="#rubyの基本" id="markdown-toc-rubyの基本">Rubyの基本</a></li>
+      <li><a href="#変数" id="markdown-toc-変数">変数</a></li>
+      <li><a href="#四則演算" id="markdown-toc-四則演算">四則演算</a></li>
+      <li><a href="#関数" id="markdown-toc-関数">関数</a></li>
+    </ul>
+  </li>
+  <li><a href="#今回の内容" id="markdown-toc-今回の内容">今回の内容</a>    <ul>
+      <li><a href="#配列" id="markdown-toc-配列">配列</a>        <ul>
+          <li><a href="#配列を使う際の注意点" id="markdown-toc-配列を使う際の注意点">配列を使う際の注意点</a></li>
+          <li><a href="#おまけデータを動的に追加するには" id="markdown-toc-おまけデータを動的に追加するには">(おまけ)データを動的に追加するには</a></li>
+        </ul>
+      </li>
+      <li><a href="#制御構文" id="markdown-toc-制御構文">制御構文</a>        <ul>
+          <li><a href="#条件分岐" id="markdown-toc-条件分岐">条件分岐</a>            <ul>
+              <li><a href="#条件式" id="markdown-toc-条件式">条件式</a>                <ul>
+                  <li><a href="#関係演算子の例" id="markdown-toc-関係演算子の例">関係演算子の例</a></li>
+                  <li><a href="#論理演算子の例" id="markdown-toc-論理演算子の例">論理演算子の例</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#繰り返し" id="markdown-toc-繰り返し">繰り返し</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#演習" id="markdown-toc-演習">演習</a>    <ul>
+      <li><a href="#演習問題2a" id="markdown-toc-演習問題2a">演習問題2a</a></li>
+      <li><a href="#演習問題2b" id="markdown-toc-演習問題2b">演習問題2b</a></li>
+      <li><a href="#演習問題2c" id="markdown-toc-演習問題2c">演習問題2c</a>        <ul>
+          <li><a href="#以下上級者向け問題" id="markdown-toc-以下上級者向け問題">以下上級者向け問題</a></li>
+        </ul>
+      </li>
+      <li><a href="#演習問題2d" id="markdown-toc-演習問題2d">演習問題2d</a></li>
+      <li><a href="#演習問題2e" id="markdown-toc-演習問題2e">演習問題2e</a></li>
+      <li><a href="#演習問題2f" id="markdown-toc-演習問題2f">演習問題2f</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="前回の復習">前回の復習</h1>
+
+<p>前回取り扱った内容は</p>
+
+<ul>
+  <li>Rubyとプログラミングについて</li>
+  <li>変数</li>
+  <li>四則演算</li>
+  <li>関数</li>
+</ul>
+
+<p>の4つでした。</p>
+
+<p>少し早いペースで進めてしまったこともあるかと思うので少し復習。</p>
+
+<h2 id="rubyの基本">Rubyの基本</h2>
+
+<p>Rubyでは文字や表示をさせるためには<code class="language-plaintext highlighter-rouge">puts</code>という命令を使用します。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span><span class="p">(</span><span class="s2">"Hello World"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>のようにすると</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World
+</code></pre></div></div>
+<p>と画面に出力されます。</p>
+
+<p>Rubyでは<code class="language-plaintext highlighter-rouge">'文字列'</code>や<code class="language-plaintext highlighter-rouge">"これも文字列"</code>のように<code class="language-plaintext highlighter-rouge">"</code>や<code class="language-plaintext highlighter-rouge">'</code>で囲んだ内容が文字列として扱われます。</p>
+
+<p>また、putsでは文字列の他にも</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts(3)
+</code></pre></div></div>
+<p>のようにして数字を出力したり、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = 13
+puts(a)
+</code></pre></div></div>
+<p>のようにすると変数の中身を出力することも出来ます。</p>
+
+<h2 id="変数">変数</h2>
+
+<p>変数は数学における変数と同じです。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">13</span>
+</code></pre></div></div>
+<p>のように変数を定義して数値を代入したり、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p>のようにもう一度代入することで値を書き換えることが可能になります。</p>
+
+<p>※ =&gt;は右側の文字列が出力されることを表しています</p>
+
+<h2 id="四則演算">四則演算</h2>
+
+<p><code class="language-plaintext highlighter-rouge">+ - * /</code>の記号を使うことで四則演算をすることが出来ます。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">7</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">12</span>
+<span class="mi">3</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p><strong>ただし、整数同士の計算では結果も整数になるので注意が必要です。</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span> <span class="o">/</span> <span class="mf">4.0</span> <span class="o">=&gt;</span> <span class="mf">0.75</span>
+</code></pre></div></div>
+<p>のように、式の中に小数が含まれる場合は結果も小数になります。</p>
+
+<p>また、計算の順序は数学と同じで</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">12</span>
+<span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">14</span>
+</code></pre></div></div>
+<p>のように掛け算・割り算が優先され、括弧でくくると先に計算されます。</p>
+
+<p>その他にも、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span><span class="o">%</span><span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">(</span><span class="err">あまりを求める</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">**</span><span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">9</span> <span class="p">(</span><span class="err">累乗する</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>といったような演算も可能です。</p>
+
+<h2 id="関数">関数</h2>
+
+<p>数学の関数と同じように、入力された値に対して何かしらの処理をして値を返すものが関数です。</p>
+
+<p>たとえば、\(f(x)=3x^2+2x+1\)といったような関数をRubyの関数にすると</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のようになります。</p>
+
+<p>関数を定義するときは、<code class="language-plaintext highlighter-rouge">def 関数名(引数)</code>で始まり<code class="language-plaintext highlighter-rouge">end</code>で終わるようにします。</p>
+
+<p>Rubyでは関数などの塊を書く場合にはインデントで下げる必要があります。</p>
+
+<p>また、引数は1つではなく2つ以上も使えるので</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="k">return</span> <span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>といったようなことも可能です。</p>
+
+<h1 id="今回の内容">今回の内容</h1>
+
+<p>今回の大きな2つのテーマは</p>
+<ul>
+  <li>配列</li>
+  <li>簡単な制御構文(if else for)
+です。</li>
+</ul>
+
+<p>配列や制御構文を使いこなすことができると色々と便利にすることが可能になります。
+演習問題では、少し実践的な問題も用意しています。</p>
+<h2 id="配列">配列</h2>
+
+<p>配列は複数の変数が連なったもので、例えば似たようなデータを効率的に管理したりすることが可能です。</p>
+
+<p>例えば、温度センサーから取得した一週間分のデータを管理したい場合に変数で全部記録すると</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_sun</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">data_mon</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="n">data_tue</span> <span class="o">=</span> <span class="mf">12.3</span>
+<span class="n">data_wed</span> <span class="o">=</span> <span class="mf">42.0</span>
+<span class="n">data_thu</span> <span class="o">=</span> <span class="mf">32.0</span>
+<span class="n">data_fri</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">data_sat</span> <span class="o">=</span> <span class="mf">21.0</span>
+</code></pre></div></div>
+<p>のように複数の変数を定義する必要があり、たとえばこれらの平均を求めるときにも</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">data_sun</span><span class="o">+</span><span class="n">data_mon</span><span class="o">+</span><span class="n">data_tue</span><span class="o">+</span><span class="n">data_wed</span><span class="o">+</span><span class="n">data_thu</span><span class="o">+</span><span class="n">data_fri</span><span class="o">+</span><span class="n">data_sat</span><span class="p">)</span><span class="o">/</span><span class="mf">7.0</span>
+</code></pre></div></div>
+<p>のように非常に長く面倒なコードになってしまいます。</p>
+
+<p>そこで配列を利用すると、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mf">42.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">]</span>
+</code></pre></div></div>
+<p>のようにして簡単に記録することが可能になります。</p>
+
+<p>配列のイメージとしては、</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>番地</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>要素</td>
+      <td>13.0</td>
+      <td>15.0</td>
+      <td>12.3</td>
+      <td>42.0</td>
+      <td>32.0</td>
+      <td>13.0</td>
+      <td>21.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>のように数字がついた箱が順番に並んでおり、その中に数が格納されているといったようなイメージです。</p>
+
+<p>このようにRubyでは<code class="language-plaintext highlighter-rouge">変数名[]</code>で値を囲むことで配列を定義でき、<code class="language-plaintext highlighter-rouge">変数名[n]</code>のようにすると<code class="language-plaintext highlighter-rouge">[n]</code>番目の要素にアクセス可能にできます。</p>
+
+<p>注意ポイントとしては、<strong>配列の番地のカウントは<code class="language-plaintext highlighter-rouge">0</code>から始まります</strong>。</p>
+
+<p>よくある間違えで、<code class="language-plaintext highlighter-rouge">temp_week[1]</code>のようにして1番目の要素を取得しようとして2番目の要素が出力されてしまうことがあります。</p>
+
+<p><code class="language-plaintext highlighter-rouge">n</code>は配列の添字といいます。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mf">13.0</span>
+</code></pre></div></div>
+<p>のようにすると値を取得することが可能になります。</p>
+
+<p>実際にいくつか配列の例をご紹介します。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"千歳烏山"</span><span class="p">,</span> <span class="s2">"仙川"</span><span class="p">,</span> <span class="s2">"つつじヶ丘"</span><span class="p">,</span> <span class="s2">"調布"</span><span class="p">]</span> <span class="c1">#文字列を載せる</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span> <span class="c1">#配列の中に配列を入れることも可能です</span>
+</code></pre></div></div>
+
+<p>配列を配列の中に入れた場合には、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+<span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</code></pre></div></div>
+<p>のように配列を塊として捉えて、配列の中に配列にアクセスすることが可能になります。</p>
+
+<h3 id="配列を使う際の注意点">配列を使う際の注意点</h3>
+
+<p>配列を使う際はデータの長さに注意しておく必要があります。</p>
+
+<p>例えば、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></div>
+<p>のような配列に含まれる変数の数(配列の長さ)が<code class="language-plaintext highlighter-rouge">3</code>であるような配列<code class="language-plaintext highlighter-rouge">data</code>があるとします。</p>
+
+<p>このときもし<code class="language-plaintext highlighter-rouge">data[3]</code>のように存在しない値にアクセスしようとすると
+<code class="language-plaintext highlighter-rouge">data[3] =&gt; nil</code>のようになってしまい、<code class="language-plaintext highlighter-rouge">nil</code>が処理に含まれることで何かしらのエラーが発生する場合もあるので注意が必要です。</p>
+
+<h3 id="おまけデータを動的に追加するには">(おまけ)データを動的に追加するには</h3>
+
+<p>もしすでに定義した配列に新しい要素を追加したい場合には、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+<span class="nb">p</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>のようにすると配列の末尾に値を追加することが可能になります。</p>
+
+<p>また、配列の途中に入れようとする場合には<code class="language-plaintext highlighter-rouge">insert</code>という命令もあり、</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">p</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">配列.insert(挿入位置, 挿入する要素)</code>のように使えます。ちなみに、この場合の挿入する位置は、先頭が1の普通の場合と同じなので注意が必要です。</p>
+
+<p>ちなみに、配列を表示させるときは<code class="language-plaintext highlighter-rouge">p</code>を使うと良い感じに表示されるのでおすすめです。</p>
+<h2 id="制御構文">制御構文</h2>
+
+<p>制御構文はプログラミングの基礎となる部分で、分岐、繰り返しといった手続きの実行順序を制御することが可能になります。</p>
+
+<p><strong>必ずプログラムが終了するようにしてください。</strong><br />
+<strong>無限ループした場合はタブを閉じて開き直してください。</strong></p>
+
+<h3 id="条件分岐">条件分岐</h3>
+
+<p>Rubyではif文と言われる構文を用いることによって、条件に応じて分岐をすることが可能です。</p>
+
+<p>では具体的な例を紹介します。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isPlus</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="kp">true</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>この関数を実際に動かしてみると、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isPlus</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+<span class="n">isPlus</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</code></pre></div></div>
+
+<p>のように、正の数ならば<code class="language-plaintext highlighter-rouge">true</code>でそれ以外ならば<code class="language-plaintext highlighter-rouge">false</code>と表示されることが分かります。</p>
+
+<p><code class="language-plaintext highlighter-rouge">if</code>文は</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="err">条件式</span> <span class="k">then</span>
+  <span class="err">処理</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のようにして使うことができます。また、<code class="language-plaintext highlighter-rouge">else</code>や<code class="language-plaintext highlighter-rouge">elsif</code>と合わせて組み合わせると</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="err">条件式</span> <span class="k">then</span>
+  <span class="err">処理</span>
+<span class="k">elsif</span> <span class="err">条件式</span> <span class="k">then</span>
+  <span class="err">処理</span>
+<span class="k">else</span>
+  <span class="err">処理</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="条件式">条件式</h4>
+
+<p>条件式は演算子という記号を用いて記述します。</p>
+
+<p>演算子の種類には大きく2つあり、2つの変数の関係を示す比較演算子と、複数の条件の組み合わせからなる関係演算子があります。</p>
+
+<h5 id="関係演算子の例">関係演算子の例</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>演算子</th>
+      <th>意味</th>
+      <th>用例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>==</td>
+      <td>等しい</td>
+      <td>a = b</td>
+    </tr>
+    <tr>
+      <td>!=</td>
+      <td>等しくない</td>
+      <td>a != b</td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>より大きい</td>
+      <td>a &gt; b</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>より小さい</td>
+      <td>a &lt; b</td>
+    </tr>
+    <tr>
+      <td>&gt;=</td>
+      <td>以上</td>
+      <td>a &gt;= b</td>
+    </tr>
+    <tr>
+      <td>&lt;=</td>
+      <td>以下</td>
+      <td>a &lt;= b</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>ちなみに、<code class="language-plaintext highlighter-rouge">==</code>の他にも<code class="language-plaintext highlighter-rouge">===</code>もありますが<code class="language-plaintext highlighter-rouge">===</code>の方が厳密です。</p>
+
+<h5 id="論理演算子の例">論理演算子の例</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>演算子</th>
+      <th>意味</th>
+      <th>用例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&amp;&amp;</td>
+      <td>かつ</td>
+      <td>(a &gt; 0) &amp;&amp; (b &gt; 0)</td>
+    </tr>
+    <tr>
+      <td>||</td>
+      <td>または</td>
+      <td>(a &gt; 0) || (b &gt; 0)</td>
+    </tr>
+    <tr>
+      <td>!</td>
+      <td>否定</td>
+      <td>!(a &gt; 0)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>こうして条件を用いて次のような関数を作ってみます。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getSign</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="s2">"Plus"</span>
+  <span class="k">elsif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="s2">"Zero"</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="s2">"Minus"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>実行してみると</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getSign(3) =&gt; "Plus"
+getSign(0) =&gt; "Zero"
+getSIgn(-4) =&gt; "Minus"
+</code></pre></div></div>
+<p>のように符号の正負を取得できています。</p>
+
+<p><code class="language-plaintext highlighter-rouge">elsif</code>の書き方ですが、言語によって謎の個性を出しているため</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C,C++: else if
+Ruby: elsif
+Python: elif
+</code></pre></div></div>
+<p>のように微妙に違うので注意が必要です。</p>
+
+<h3 id="繰り返し">繰り返し</h3>
+
+<p>繰り返しは先程の配列を処理する際にとても便利です。</p>
+
+<p>Rubyでは繰り返しをする方法が多くあり、全部説明するのは難しいので今回はシンプルなものだけを紹介します。その他の構文に関しては次回説明します。</p>
+
+<p>シンプルな繰り返し処理としては、<code class="language-plaintext highlighter-rouge">for</code>を用いた記法を紹介します。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span> <span class="k">do</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>このコードを実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+3
+4
+5
+</code></pre></div></div>
+<p>と1から5まで打ち出されます。
+<code class="language-plaintext highlighter-rouge">a..b</code>のように書くと、aからbまで順番に1づつ要素として取り出します。取り出した要素は変数<code class="language-plaintext highlighter-rouge">i</code>に代入されていきます。</p>
+
+<p>また、<code class="language-plaintext highlighter-rouge">a..b..c</code>とすると、aからbまでcづつ増えていくとゆうようなこともできます。</p>
+
+<p>ちなみに同じようなことを実行するだけなら、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">5</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>このコードを実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+</code></pre></div></div>
+<p>のように合計で囲まれた中身が合計5回実行されるようなコードも作ることが可能です。</p>
+
+<p>さて、for文を使った具体的な例を見てみましょう。</p>
+
+<p>さきほどの配列における1週間の平均気温を求める場合には、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp_week</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mf">42.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">]</span>
+<span class="n">temp_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">temp</span> <span class="k">in</span> <span class="n">temp_week</span> <span class="k">do</span>
+  <span class="n">temp_sum</span> <span class="o">+=</span> <span class="n">temp</span>
+<span class="k">end</span>
+<span class="n">temp_avg</span> <span class="o">=</span> <span class="n">temp_sum</span> <span class="o">/</span> <span class="n">temp_week</span><span class="p">.</span><span class="nf">size</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">temp_avg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mf">21.185714285714287</span>
+</code></pre></div></div>
+
+<p>のようにしてあげると簡単に求めることができます。<code class="language-plaintext highlighter-rouge">temp_week.size</code>は配列の要素数を取得する記法です。</p>
+
+<p>これの良い部分は、要素数によらず自動的に求めることができる点です。</p>
+
+<p>また、先程のif文と組み合わせてあげると有名なFizzBuzzという問題を解くことができます。</p>
+
+<p>このルールは単純で、1から順に数を数え上げていき、3の倍数なら「Fizz」、5の倍数なら「Buzz」、両方の倍数（15の倍数）なら「Fizz Buzz」、いずれでもなければその数を出力するものです。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">FizzBuzz</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">30</span>
+      <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">==</span><span class="mi">0</span>
+          <span class="nb">puts</span> <span class="s2">"FizzBuzz"</span>
+      <span class="k">elsif</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">0</span>
+          <span class="nb">puts</span> <span class="s2">"Fizz"</span>
+      <span class="k">elsif</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">==</span><span class="mi">0</span>
+          <span class="nb">puts</span> <span class="s2">"Buzz"</span>
+      <span class="k">else</span>
+          <span class="nb">puts</span> <span class="n">i</span>
+      <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="no">FizzBuzz</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>実行してみると、</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+...
+</code></pre></div></div>
+
+<p>のようにいい感じに出力されていると思います。
+この他にもfor文とif-else文、配列を組み合わせる色々な事ができるので、是非演習問題に挑戦してみてください。</p>
+
+<h1 id="演習">演習</h1>
+<h2 id="演習問題2a">演習問題2a</h2>
+
+<p>4キロごとの営業キロに応じた運賃表が与えられます。営業キロがx(km)として与えられた時、運賃を出力する関数<code class="language-plaintext highlighter-rouge">getFare(x)</code>を作成せよ。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+xは0以上30以下の実数として与えられる。
+運賃表は以下に示し、0キロ~31キロまである。
+なお、0~3は0キロ以上4キロ未満であることを示している。
+</code></pre></div></div>
+
+<p>運賃表</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>営業キロ</th>
+      <th>運賃(円)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0~3</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>4~7</td>
+      <td>190</td>
+    </tr>
+    <tr>
+      <td>8~11</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>12~15</td>
+      <td>240</td>
+    </tr>
+    <tr>
+      <td>16~19</td>
+      <td>330</td>
+    </tr>
+    <tr>
+      <td>20~23</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <td>24~27</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <td>28~31</td>
+      <td>590</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">getFare</span><span class="p">(</span><span class="mf">4.2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">190</span>
+<span class="n">getFare</span><span class="p">(</span><span class="mf">12.4</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">240</span>
+</code></pre></div></div>
+
+<p>ヒント: 規則性に注目するととてもシンプルにプログラムを書けます</p>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getFee</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">190</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">240</span><span class="p">,</span><span class="mi">330</span><span class="p">,</span><span class="mi">420</span><span class="p">,</span><span class="mi">510</span><span class="p">,</span><span class="mi">590</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h2 id="演習問題2b">演習問題2b</h2>
+
+<p>ある整数<code class="language-plaintext highlighter-rouge">n</code>が与えられた時、その数が素数かどうかを判定する関数<code class="language-plaintext highlighter-rouge">isPrimes(n)</code>を作成せよ。
+なお、素数の場合は<code class="language-plaintext highlighter-rouge">true</code>を返し、素数でない場合は<code class="language-plaintext highlighter-rouge">false</code>を返す。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+nは0以上100以下の整数
+その数が素数かどうかわからないときは、素数の定義から考えてください
+</code></pre></div></div>
+
+<p>ヒント: 工夫すると計算する回数をへらすことができるので2fにも是非挑戦してみてください</p>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>isPrime(5) =&gt; true
+isPrime(28) =&gt; false
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isPrime</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">2</span><span class="o">..</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="k">return</span> <span class="kp">false</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h2 id="演習問題2c">演習問題2c</h2>
+
+<p>20人のクラスで100点満点の複素関数論のテストを実施しました。その結果が配列として与えられた時、標準偏差を求める関数<code class="language-plaintext highlighter-rouge">std(scores)</code>を作成せよ。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+すべての値は0以上100以下の整数で与えられる
+要素数は最小で10以上、最大で30以下である
+nは与えられる配列の要素数と一致しているため、
+配列をscoresとしたときn=scores.sizeとして取得できる
+</code></pre></div></div>
+
+<p>ヒント</p>
+
+<p>標準偏差\(s\)は各データの値を\(x_i\)、データの総数を\(n\)、データの平均を\(\overline{x}\)としたとき次式で求められる。</p>
+
+\[s = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i-\overline{x})^2}\]
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stddevia([0, 100, 4, 86, 1, 34]) =&gt; 41.0954174249798
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">std</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="nf">size</span>
+  <span class="k">for</span> <span class="n">score</span> <span class="k">in</span> <span class="n">scores</span> <span class="k">do</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">score</span>
+  <span class="k">end</span>
+  <span class="n">avg</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">n</span>
+  <span class="n">devia</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">sum_temp</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">score</span> <span class="k">in</span> <span class="n">scores</span>
+    <span class="n">sum_temp</span> <span class="o">+=</span> <span class="p">(</span><span class="n">score</span> <span class="o">-</span> <span class="n">avg</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">sum_temp</span> <span class="o">/</span> <span class="n">n</span><span class="p">).</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h3 id="以下上級者向け問題">以下上級者向け問題</h3>
+
+<h2 id="演習問題2d">演習問題2d</h2>
+
+<p>整数nが与えられた時、2からnまですべての素数を配列として返す関数<code class="language-plaintext highlighter-rouge">getPrimes(max)</code>を作成せよ。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+nは2以上100以下です。
+</code></pre></div></div>
+
+<p>ヒント: もっと高速なアルゴリズムを考えてみるとおすすめです</p>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getPrimes(5) =&gt; [2, 3, 5]
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getPrimes</span><span class="p">(</span><span class="n">max</span><span class="p">)</span>
+  <span class="n">list</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="n">max</span><span class="p">).</span><span class="nf">to_a</span>
+  <span class="n">prime_list</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">sqrt</span> <span class="o">=</span> <span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">max</span><span class="p">).</span><span class="nf">floor</span>
+
+  <span class="k">while</span> <span class="n">val</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">shift</span>
+    <span class="n">prime_list</span> <span class="o">&lt;&lt;</span> <span class="n">val</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="n">sqrt</span>
+      <span class="k">break</span>
+    <span class="k">end</span>
+    <span class="n">list</span><span class="p">.</span><span class="nf">delete_if</span><span class="p">{</span><span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">%</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">prime_list</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">list</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h2 id="演習問題2e">演習問題2e</h2>
+
+<p>以下に列車の運賃表が与えられます。この列車では、目的地までのきっぷを1枚で買うよりも分割して買ったほうが安くなる場合があります。</p>
+
+<p>営業キロ<code class="language-plaintext highlighter-rouge">x</code>が与えられた時、きっぷ分割を使った最安の運賃<code class="language-plaintext highlighter-rouge">minFee(x)</code>を出力する関数を求める。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>営業キロ</th>
+      <th>片道運賃</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0～3</td>
+      <td>140</td>
+    </tr>
+    <tr>
+      <td>４～7</td>
+      <td>190</td>
+    </tr>
+    <tr>
+      <td>8～11</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>12～15</td>
+      <td>240</td>
+    </tr>
+    <tr>
+      <td>16～19</td>
+      <td>320</td>
+    </tr>
+    <tr>
+      <td>20～23</td>
+      <td>410</td>
+    </tr>
+    <tr>
+      <td>24～27</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td>28～31</td>
+      <td>580</td>
+    </tr>
+    <tr>
+      <td>32～35</td>
+      <td>670</td>
+    </tr>
+    <tr>
+      <td>36～39</td>
+      <td>760</td>
+    </tr>
+    <tr>
+      <td>40～43</td>
+      <td>840</td>
+    </tr>
+    <tr>
+      <td>44～47</td>
+      <td>970</td>
+    </tr>
+    <tr>
+      <td>48～51</td>
+      <td>1,140</td>
+    </tr>
+    <tr>
+      <td>52～55</td>
+      <td>1,320</td>
+    </tr>
+    <tr>
+      <td>56～59</td>
+      <td>1,490</td>
+    </tr>
+    <tr>
+      <td>60～63</td>
+      <td>1,660</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+xは1以上60以下です
+分割できる最大の枚数は3枚です
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minFee(60) =&gt; 1050
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">minFee</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">min</span> <span class="o">=</span> <span class="mi">99999</span>
+  <span class="n">fees</span> <span class="o">=</span> <span class="p">[</span><span class="mi">140</span><span class="p">,</span><span class="mi">190</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">240</span><span class="p">,</span><span class="mi">320</span><span class="p">,</span><span class="mi">410</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">580</span><span class="p">,</span><span class="mi">670</span><span class="p">,</span><span class="mi">760</span><span class="p">,</span><span class="mi">840</span><span class="p">,</span><span class="mi">970</span><span class="p">,</span><span class="mi">1140</span><span class="p">,</span><span class="mi">1320</span><span class="p">,</span><span class="mi">1490</span><span class="p">,</span><span class="mi">1660</span><span class="p">]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="n">x</span> <span class="k">do</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="n">fees</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">fees</span><span class="p">[</span><span class="n">j</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">fees</span><span class="p">[(</span><span class="n">x</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">min</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="n">min</span><span class="p">].</span><span class="nf">min</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">min</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+<h2 id="演習問題2f">演習問題2f</h2>
+
+<p>演習問題2bについて、<code class="language-plaintext highlighter-rouge">x</code>が与えられたときに素数か判定するプログラム<code class="language-plaintext highlighter-rouge">isPrime(x)</code>を作ります。
+ここで、500回isPrimeを呼び出したときに合計で<code class="language-plaintext highlighter-rouge">500ms</code>未満で実行が完了するように改良してください。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+xは2以上90000以下です
+</code></pre></div></div>
+
+<details>
+  <summary><b>サンプルコード(押して開く)</b></summary>
+
+  <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">isPrime</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">2</span><span class="o">..</span><span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="k">return</span> <span class="kp">false</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div>  </div>
+
+</details>
+
+    <footer class="site-footer">
+      
+      <span class="site-footer-owner"><a href="https://github.com/csenet/learn-ruby">learn-ruby</a>
+        is maintained by <a href="https://github.com/csenet">csenet</a>.</span>
+      
+      <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub
+          Pages</a>.</span>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

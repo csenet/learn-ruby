@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Ruby講習 第4回 | Ruby学習サイト</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Ruby講習 第4回" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ruby学習サイト" />
+<meta property="og:description" content="Ruby学習サイト" />
+<link rel="canonical" href="https://rubylect.k1h.dev/lect4/slide/slide.html" />
+<meta property="og:url" content="https://rubylect.k1h.dev/lect4/slide/slide.html" />
+<meta property="og:site_name" content="Ruby学習サイト" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ruby講習 第4回" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Ruby学習サイト","headline":"Ruby講習 第4回","url":"https://rubylect.k1h.dev/lect4/slide/slide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+    type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css?v=e16c9f31818af6bf55caf043b5fb7560b306bc92">
+  <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
+  <header role="banner">
+    <nav class="navbar navbar-light py-3" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <span
+          class="navbar-brand mb-0 h1">Ruby講習 第4回</span>
+      </div>
+    </nav>
+    <!-- <h2 class="project-tagline">
+      Ruby学習サイト</h2>-->
+  </header>
+  <main id="content" class="main-content" role="main">
+    <h1 id="ruby講習-第4回">Ruby講習 第4回</h1>
+
+<h3 id="工学研究部-新入生向け講習会">工学研究部 新入生向け講習会</h3>
+
+<p>21 Void<br />
+2022年5月20日<br />
+<small>I類コンピューターサイエンスプログラム2年</small></p>
+
+<hr />
+
+<h3 id="講習スケジュールv2">講習スケジュール(v2)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>回</th>
+      <th>日付</th>
+      <th>テーマ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>4/23</td>
+      <td>簡単な演算と関数</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5/06</td>
+      <td>*配列と簡単な制御構文</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5/13</td>
+      <td>複雑な制御構文と再帰関数</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>5/20</strong></td>
+      <td><strong>スコープ、オブジェクト指向と読みやすいコード</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>前回の講習の録画と資料はDiscordにて配布中</p>
+
+<hr />
+
+<h1 id="先週の復習">先週の復習</h1>
+
+<p>前回の後半の内容を
+すべて理解していなくても大丈夫</p>
+
+<hr />
+<h1 id="複雑な制御構文">複雑な制御構文</h1>
+
+<hr />
+
+<h3 id="case文">Case文</h3>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getClass</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+  <span class="k">if</span> <span class="mi">0</span><span class="o">..</span><span class="mi">2</span>
+    <span class="s2">"幼児"</span>
+  <span class="k">when</span> <span class="mi">3</span><span class="o">..</span><span class="mi">6</span>
+    <span class="s2">"小児"</span>
+  <span class="k">when</span> <span class="mi">7</span><span class="o">..</span><span class="mi">12</span>
+    <span class="s2">"子供"</span>
+  <span class="k">when</span> <span class="mi">13</span><span class="o">..</span><span class="mi">18</span>
+    <span class="s2">"若者"</span>
+  <span class="k">else</span>
+    <span class="s2">"大人"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">case A</code>としたとき<code class="language-plaintext highlighter-rouge">A</code>とwhenで指定された部分が一致する処理を行す</p>
+
+<p><code class="language-plaintext highlighter-rouge">else</code>はどの条件にも当てはまらないときに呼ばれ</p>
+
+<p>1つの値に対して複数の条件分岐をする場合に完結に書くことができる</p>
+
+<hr />
+<h3 id="while文">While文</h3>
+
+<p>while文は条件を満たす間は処理を行う処理。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="n">n</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<hr />
+
+<p>のような処理をすると、<code class="language-plaintext highlighter-rouge">n &gt; 0</code>を満たす間は<code class="language-plaintext highlighter-rouge">n = n - 1</code>をするので、nから順にカウントダウンされていきます。</p>
+
+<hr />
+<h4 id="each文">each文</h4>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">sumA</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">sumB</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="k">in</span> <span class="n">data</span> <span class="k">do</span>
+  <span class="n">sumA</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="k">end</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span>
+  <span class="n">sumB</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように配列から順番に要素を取り出して処理をすることが可能です。</p>
+
+<hr />
+
+<h4 id="breakとnext">breakとnext</h4>
+
+<p><code class="language-plaintext highlighter-rouge">break</code>はループを強制的に抜ける命令で</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">10</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="k">break</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5</span>
+  <span class="nb">puts</span> <span class="n">i</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>このように、<code class="language-plaintext highlighter-rouge">i</code>が5より大きくなると<code class="language-plaintext highlighter-rouge">break</code>が呼び出されて<code class="language-plaintext highlighter-rouge">for</code>文から強制的に抜けるので、</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+5
+</code></pre></div></div>
+<p>となります。</p>
+
+<hr />
+
+<p>また、<code class="language-plaintext highlighter-rouge">next</code>文を使うと特定の条件で処理をスキップすることもでき、</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">10</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="k">next</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="nb">puts</span> <span class="n">i</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のようにすると、<code class="language-plaintext highlighter-rouge">i</code>が2の倍数のときに<code class="language-plaintext highlighter-rouge">next</code>が呼び出されて処理がスキップされます。</p>
+
+<hr />
+
+<p>つまりは、</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+3
+5
+7
+9
+</code></pre></div></div>
+
+<p>のように奇数だけが出力されるようになります。</p>
+
+<hr />
+
+<h2 id="修飾子">修飾子</h2>
+
+<p><code class="language-plaintext highlighter-rouge">if</code>や<code class="language-plaintext highlighter-rouge">while</code>などの文は</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように、<code class="language-plaintext highlighter-rouge">処理 if 条件</code>などのようにすると1行で書くことが可能。</p>
+
+<hr />
+
+<h2 id="再帰関数">再帰関数</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のようなコードが有る場合に、例えば、<code class="language-plaintext highlighter-rouge">n=3</code>を入れた時の動作を見てみると</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fac(3) =&gt; 3 * fac(2)
+fac(2) =&gt; 2 * fac(1)
+fac(1) =&gt; 1
+</code></pre></div></div>
+
+<hr />
+
+<p>順番に代入してみると、</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fac(3) =&gt; 3 * 2 * 1 = 6
+</code></pre></div></div>
+
+<p>となります。</p>
+
+<hr />
+
+<p>このように関数の中で関数を呼び出すことが可能。</p>
+
+<ul>
+  <li>
+    <p>再帰関数を使うと漸化式などをそもまま実装</p>
+  </li>
+  <li>
+    <p>繰り返しで書くよりも完結に</p>
+  </li>
+</ul>
+
+<p>関数を呼び出す回数が多くなりすぎるとエラーが起きるので注意</p>
+
+<hr />
+
+<p>再帰関数を使いこなせると色々なアルゴリズムを実装できる</p>
+
+<p>キーワード</p>
+<ul>
+  <li>動的計画法(メモ化再帰)</li>
+  <li>幅優先探索</li>
+  <li>関数型プログラミング</li>
+</ul>
+
+<p>沼にハマりたい人は是非</p>
+
+<hr />
+<h1 id="スコープ">スコープ</h1>
+
+<p>変数にはいくつか種類があった。</p>
+
+<ul>
+  <li><strong>ローカル変数</strong> (今までこれを使ってた)</li>
+  <li>インスタンス変数</li>
+  <li>クラス変数</li>
+  <li>グローバル変数</li>
+</ul>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">name</span> <span class="o">=</span> <span class="s2">"Void"</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="n">script</span> <span class="o">=</span>  <span class="s2">"Hello!"</span> <span class="o">+</span> <span class="nb">name</span> <span class="o">+</span> <span class="s2">"!"</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">greet</span><span class="p">(</span><span class="s2">"Void"</span><span class="p">)</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>これを実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello!Void!
+Error: eval:9:in `&lt;main&gt;': undefined local variable or method `script' for main:Object (NameError)
+</code></pre></div></div>
+<p>のようにエラーが発生する。</p>
+
+<p>関数の中で定義された変数は関数のみで有効。</p>
+
+<p>スコープは、<strong>変数の有効範囲</strong>のこと。</p>
+
+<hr />
+
+<h2 id="グローバル変数">グローバル変数</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">name</span> <span class="o">=</span> <span class="s2">"Void"</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="vg">$script</span> <span class="o">=</span>  <span class="s2">"Hello!"</span> <span class="o">+</span> <span class="nb">name</span> <span class="o">+</span> <span class="s2">"!"</span>
+  <span class="nb">puts</span><span class="p">(</span><span class="vg">$script</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">greet</span><span class="p">(</span><span class="s2">"Void"</span><span class="p">)</span>
+<span class="nb">puts</span><span class="p">(</span><span class="vg">$script</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>これだと、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello!Void!
+Hello!Void!
+</code></pre></div></div>
+<p>のように正しく表示される。</p>
+
+<hr />
+
+<p>変数の先頭に、<code class="language-plaintext highlighter-rouge">$</code>をつけて<code class="language-plaintext highlighter-rouge">$script</code>あげると<strong>グローバル変数</strong>と呼ばれるものになる。</p>
+
+<p><strong>グローバル変数</strong>のスコープ(有効範囲)はプログラム全体なので、どこからでも参照できる。</p>
+
+<hr />
+
+<h1 id="オブジェクト指向">オブジェクト指向</h1>
+
+<p>プログラミング言語にはいくつか種類がある。</p>
+
+<ul>
+  <li>手続き型言語(C言語やBASICなど)</li>
+  <li>オブジェクト指向言語(<strong>Ruby</strong>やPythonなど)</li>
+  <li>関数型言語(GoやHaskellなど)</li>
+</ul>
+
+<p>この中でも、<strong>Ruby</strong>はオブジェクト指向という考え方に基づいた言語になっている</p>
+
+<hr />
+
+<p>オブジェクト指向の重要な3つの概念は、</p>
+
+<ul>
+  <li>カプセル化(隠蔽)</li>
+  <li>継承</li>
+  <li>ポリモーフィズム</li>
+</ul>
+
+<p>今回は雰囲気だけ。</p>
+
+<hr />
+
+<p>プログラムではクラスと呼ばれる関数やデータをまとめたものを扱す</p>
+
+<p>例えばラインをトレースするロボットを制御</p>
+
+<hr />
+
+<p><img src="/lect4/fig/line.png" alt="bg contain" /></p>
+
+<hr />
+
+<h2 id="カプセル化">カプセル化</h2>
+
+<p>普通にモーターを制御する場合には、</p>
+
+<p>制御する側はそんなハードウェアのことなんて気にしたくない</p>
+
+<p>モーターをどっちに回すのかと速度を指定すれば勝手にモーターが回ってくれれば良い</p>
+
+<hr />
+
+<p>モータードライバを変更するたびに変更するの面倒ですよね。
+一回、作ったら他のロボットでも使いまわす</p>
+
+<p>内部の処理を<code class="language-plaintext highlighter-rouge">ブラックボックス化</code>してあげることをカプセル化</p>
+
+<hr />
+
+<h2 id="継承">継承</h2>
+
+<p>車の「直進」「止まる」「曲がる」といったいったようなものを実装するときに、それぞれでまたモーターを制御する設定を書くのは面倒</p>
+
+<p>基本的な設計図を用意して他の必要な部分はそれぞれカスタマイズ</p>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ClassName</span>
+<span class="k">def</span> <span class="nf">method_name</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span><span class="n">arg2</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+  <span class="err">処理</span>
+<span class="k">end</span>
+
+<span class="n">instance</span> <span class="o">=</span> <span class="no">ClassName</span><span class="p">.</span><span class="nf">new</span><span class="p">()</span>
+<span class="n">instanace</span><span class="p">.</span><span class="nf">medhot_name</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Motor</span>
+  <span class="k">def</span> <span class="nf">stop</span><span class="p">()</span>
+    <span class="nb">puts</span> <span class="s2">"Stop"</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"MOVE </span><span class="si">#{</span><span class="n">speed</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rightMotor</span> <span class="o">=</span> <span class="no">Motor</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">rightMotor</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">rightMotor</span><span class="p">.</span><span class="nf">stop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MOVE 1.0
+Stop
+</code></pre></div></div>
+
+<hr />
+
+<p>サーボモータ(角度をしてできるモーター)を追加してみる。</p>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Motor</span>
+  <span class="k">def</span> <span class="nf">stop</span><span class="p">()</span>
+    <span class="nb">puts</span> <span class="s2">"Stop"</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"MOVE </span><span class="si">#{</span><span class="n">speed</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">class</span> <span class="nc">Servo</span> <span class="o">&lt;</span> <span class="no">Motor</span>
+  <span class="k">def</span> <span class="nf">moveDegree</span><span class="p">(</span><span class="n">degree</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"MOVEDEG </span><span class="si">#{</span><span class="n">degree</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">rightMotor</span> <span class="o">=</span> <span class="no">Servo</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">rightMotor</span><span class="p">.</span><span class="nf">moveDegree</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">rightMotor</span><span class="p">.</span><span class="nf">stop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>これを実行すると、</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MOVEDEG 30
+Stop
+</code></pre></div></div>
+<p>のように、Motorクラスに対して機能を追加しているような感じ</p>
+
+<hr />
+
+<p>オブジェクト指向は、実際にコードを試行錯誤してみると良い設計や機能をつかめるはず</p>
+
+<hr />
+
+<h1 id="読みやすいコード">読みやすいコード</h1>
+
+<p>1人でコードを書いているだけならいいが
+チーム開発などでは他の人が読めるコードを書くことが必要になる</p>
+
+<p>特にぐちゃぐちゃなコードを書いてしまうと
+のちのちの自分もわけがわからなくなってしまう</p>
+
+<hr />
+<h2 id="変数関数名">変数・関数名</h2>
+
+<p>変数名を定義するときに
+適当な名前をつけていませんか?</p>
+
+<p>例えば、次のようなうるう年か
+判定する関数があったとします。
+ここでは仮に
+2022~2027までの5年間を判定します。</p>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">uruudoshi</span><span class="p">(</span><span class="n">toshi</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2022</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2023</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2024</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">true</span>
+  <span class="k">elsif</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2025</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2026</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="n">toshi</span> <span class="o">==</span> <span class="mi">2027</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="err">うるう年かどうか</span><span class="p">(</span><span class="err">年</span><span class="p">)</span>
+  <span class="k">if</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2022</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2023</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2024</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">true</span>
+  <span class="k">elsif</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2025</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2026</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="err">年</span> <span class="o">==</span> <span class="mi">2027</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>変数名や関数名をつける時のポイント</p>
+
+<ul>
+  <li>その名前を見ただけで、何を表す変数、関数なのかすぐに理解できるようにする</li>
+  <li>基本的に英語でつける
+<a href="https://codic.jp/engine">このサイト</a>とか便利</li>
+  <li>汎用的な言葉を避けて分かりやすく</li>
+</ul>
+
+<hr />
+
+<p>既存のライブラリなどを参考にすると良いかも。</p>
+
+<p>あとは、命名規則を統一すると良いです。</p>
+
+<ul>
+  <li>camelCase (単語の先頭を大文字)</li>
+  <li>snake_case (単語の間をアンダーバー)</li>
+  <li>kebab-case (単語の間をハイフン)</li>
+</ul>
+
+<hr />
+
+<p>例えば、今回の場合だと</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Rubyの場合true/falseを返す関数は?、破壊的な関数は!をつける慣習</span>
+<span class="k">def</span> <span class="nf">isLeapYear?</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="nb">puts</span> <span class="kp">false</span>
+  <span class="k">elsif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">!=</span><span class="mi">0</span>
+    <span class="nb">puts</span> <span class="kp">true</span>
+  <span class="k">else</span>
+    <span class="nb">puts</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>のように実装できます。</p>
+
+<hr />
+<h2 id="関数">関数</h2>
+
+<p>関数はなるべく機能ごとに簡単に実装します。</p>
+
+<p>もし、長くなりそうな場合や使い回すことができそうな場合は関数にします。</p>
+
+<hr />
+
+<h2 id="コメントアウト">コメントアウト</h2>
+
+<p>コードを書くときに適切にコメントアウトを残しておくと、他の人が読んだときや自分が読んだときに役に立ちます。</p>
+
+<hr />
+
+<p>コードを読んでみると面白い。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># これは魔法。触っちゃダメ。</span>
+<span class="c1"># 誰もコメントを読んでくれない！</span>
+<span class="c1"># THANK YOU MARIO! BUT OUR PRINCESS IS IN ANOTHER CASTLE!</span>
+<span class="c1"># TODO: もう全部消す</span>
+<span class="c1"># これ書いた奴バカじゃねーの…全然動かねーよ！</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>なんでもかんでもコメントするよりは、考えたロジックなどパット見ではわからないことを書く。場合にもよるが。</p>
+
+<hr />
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getPrimeList</span><span class="p">(</span><span class="n">max</span><span class="p">)</span>
+  <span class="n">list</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="n">max</span><span class="p">).</span><span class="nf">to_a</span>
+  <span class="c1">#2からmaxまでの配列(なくても良いかも)</span>
+  <span class="n">prime_list</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">sqrt</span> <span class="o">=</span> <span class="no">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">max</span><span class="p">).</span><span class="nf">floor</span>
+  <span class="c1"># 倍数を消す(エラトステネスの篩)</span>
+  <span class="k">while</span> <span class="n">val</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">shift</span>
+    <span class="n">prime_list</span> <span class="o">&lt;&lt;</span> <span class="n">val</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="n">sqrt</span>
+      <span class="k">break</span>
+    <span class="k">end</span>
+    <span class="n">list</span><span class="p">.</span><span class="nf">delete_if</span><span class="p">{</span><span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span> <span class="o">%</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">prime_list</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">list</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<hr />
+<h1 id="演習">演習</h1>
+
+<p>今回の扱った内容は少し難しいため演習問題は
+基本的にこれまでの内容の応用です</p>
+
+<hr />
+
+<h1 id="演習問題4a">演習問題4a</h1>
+
+<hr />
+
+<p>2Dゲーム開発者のあなたは円と任意の壁との当たり判定を実装したいと思っています。</p>
+
+<p>ここで壁は直線であり$ax+by+c=0$で与えられます。また、円の中心座標$(x_0, y_0)$であり半径は$r$で与えられます。</p>
+
+<p>このとき、円と壁が接触しているか判定する関数
+<code class="language-plaintext highlighter-rouge">isTouched(a,b,c,x0,y0,r)</code>
+を作成せよ。</p>
+
+<hr />
+<p>ただし、壁抜けを防止するために接触の判定には<code class="language-plaintext highlighter-rouge">1.0</code>の幅をもたせる。</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+すべての値は整数として与えられる
+</code></pre></div></div>
+
+\[\begin{align*}
+直線:&amp;  ax+by+c=0\\
+円:&amp;  (x-x_0)^2+(y-y_0)^2=r^2
+\end{align*}\]
+
+<p>のグラフを<a href="https://www.geogebra.org/">GeoGebra</a>などで描画して試すと良いかも</p>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>isTouched(49,27,40,55,59,77) =&gt; true
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="演習問題4b">演習問題4b</h1>
+
+<hr />
+
+<p>アルゴリズムの勉強としてよくあるのが数を並べ替えるソートです。
+整数が配列として与えられたときに、それらを小さい順に並べ替えて出力する関数<code class="language-plaintext highlighter-rouge">sort(data)</code>を作成する。</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+データはすべて整数
+配列の要素数Nは5以上20以下
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sort([1, 3, 4, 5, 2]) =&gt; [1, 2, 3, 4, 5]
+</code></pre></div></div>
+
+<hr />
+
+<p>色々なアルゴリズムがあるが、<code class="language-plaintext highlighter-rouge">バブルソート</code>と呼ばれるアルゴリズムを紹介する。</p>
+
+<ul>
+  <li>隣接する要素と比較し順序が逆であれば入れ替える</li>
+  <li>すべてがソートされるまで繰り返す</li>
+</ul>
+
+<p>配列<code class="language-plaintext highlighter-rouge">data</code>で<code class="language-plaintext highlighter-rouge">i</code>番目と<code class="language-plaintext highlighter-rouge">i+1</code>番目の要素を入れ替える場合は,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre></div></div>
+<p>のように書けます。</p>
+
+<hr />
+
+<h1 id="演習問題4c">演習問題4c</h1>
+
+<hr />
+
+<p>AさんとBさんがじゃんけんをした結果が配列として与えられる。</p>
+
+<p>このとき、AさんとBさんの勝敗を出力する関数<code class="language-plaintext highlighter-rouge">judge(arrA, arrB)</code>を作成する。</p>
+
+<hr />
+
+<p>出力は、Aさんが買った場合には<code class="language-plaintext highlighter-rouge">"A"</code>、Bさんが買った場合には<code class="language-plaintext highlighter-rouge">"A"</code>、引き分けの場合は<code class="language-plaintext highlighter-rouge">"DRAW"</code>を出力する。</p>
+
+<p>なお、じゃんけんの結果は0がグー、1がチョキ、2がパーとして与えられる。</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>制約
+じゃんけんの回数は1以上20以下である。
+</code></pre></div></div>
+
+<p>入出力例</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>judge([1,1,0],[2,2,2]) =&gt; "A"
+</code></pre></div></div>
+
+<p>じゃんけんの関係に注目すると賢く判定できます</p>
+
+<hr />
+<h1 id="お疲れさまでした">お疲れさまでした！</h1>
+<p>次回はおまけで
+5/20に競プロ体験会を実施します！
+興味の有る方は是非お越しください</p>
+
+    <footer class="site-footer">
+      
+      <span class="site-footer-owner"><a href="https://github.com/csenet/learn-ruby">learn-ruby</a>
+        is maintained by <a href="https://github.com/csenet">csenet</a>.</span>
+      
+      <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub
+          Pages</a>.</span>
+    </footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
